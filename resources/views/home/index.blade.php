@@ -11,13 +11,20 @@
                 background-repeat: no-repeat; /* Prevents the image from repeating */
                 background-size: cover; /* Scales the image to cover the entire element */
             }
+
+            #signup-form input,
+            #signup-form textarea,
+            #signup-form input[type="submit"] {
+            display: block;
+            margin-bottom: 10px; /* Add some spacing between the elements */
+            }
         </style>
 	</head>
 	<body class="is-preload">
 
 		<!-- Header -->
 			<header id="header">
-				<h1>A one in a lifetime Concert</h1>
+				<h1>A once in a lifetime Concert</h1>
 				<p>Cancun Jasss Music festival. More than 30 Bands!!!!<br />
 				Register Below to get free access </p>
 			</header>
@@ -25,7 +32,9 @@
 		<!-- Signup Form -->
 			<form id="signup-form" method="post" action="#">
 				<input type="email" name="email" id="email" placeholder="Email Address" />
-				<input type="submit" value="Sign Up" />
+				<input type="text" name="name" id="name" placeholder="Name" />
+				<input style="width: 600px;" type="text"  name="about" id="about" placeholder="Tell me more about yourself" />
+                <input type="submit" value="Sign Up" />
 			</form>
 
 		<!-- Footer -->
