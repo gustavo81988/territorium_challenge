@@ -30,7 +30,8 @@
 			</header>
 
 		<!-- Signup Form -->
-			<form id="signup-form" method="post" action="#">
+			<form id="signup-form" method="post" action="{{ url('/home/save') }}">
+                @csrf
 				<input type="email" name="email" id="email" placeholder="Email Address" />
 				<input type="text" name="name" id="name" placeholder="Name" />
 				<input style="width: 600px;" type="text"  name="about" id="about" placeholder="Tell me more about yourself" />
@@ -52,5 +53,26 @@
 
 		<!-- Scripts -->
 			<script src="{{asset('assets/js/main.js')}}"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#signup-form').submit(function(event) {
+                        event.preventDefault();
+                        var formData = $(this).serialize();
+                        console.log($(this).attr('action'));
+                        $.ajax({
+                            url: $(this).attr('action'),
+                            type: "POST",
+                            data: formData,
+                            success: function(response) {
+                                console.log(response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                    });
+                });
+            </script>
 	</body>
 </html>
