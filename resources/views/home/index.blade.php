@@ -33,8 +33,8 @@
 			<form id="signup-form" method="post" action="{{ url('/home/save') }}">
                 @csrf
 				<input type="email" name="email" id="email" placeholder="Email Address" />
-				<input type="text" name="name" id="name" placeholder="Name" />
-				<input style="width: 600px;" type="text"  name="about" id="about" placeholder="Tell me more about yourself" />
+				<input type="text" required name="name" id="name" placeholder="Name" />
+				<input style="width: 600px;" required type="text"  name="about" id="about" placeholder="Tell me more about yourself" />
                 <input type="submit" value="Sign Up" />
 			</form>
 
@@ -68,7 +68,12 @@
                                 console.log(response);
                             },
                             error: function(xhr, status, error) {
-                                console.error(error);
+                                var errors = xhr.responseJSON.errors;
+                                var errorText = '';
+                                for (var error in errors) {
+                                errorText += errors[error][0] + '\n';
+                                }
+                                alert(errorText);
                             }
                         });
                     });

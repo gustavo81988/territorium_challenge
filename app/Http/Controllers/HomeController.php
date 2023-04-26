@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\RegisteredPeople;
 
 class HomeController extends Controller
 {
@@ -11,6 +12,16 @@ class HomeController extends Controller
     }
 
     public function saveForm(Request $request){
-        dd($request->all());
+        $validated = $request->validate([
+            'name' => 'required|max:60',
+            'email' => 'required|unique:registered_people|email',
+            'about' => 'required|max:60'
+        ]);
+
+        $people = new RegisteredPeople;
+        $people->name = $request->name;
+        $people->email = $request->email;
+        $people->about = $request->about;
+        $people->save();
     }
 }
