@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index');
 Route::post('/home/save', 'HomeController@saveForm');
+Route::get('/home/getPeople', 'HomeController@getPeople');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

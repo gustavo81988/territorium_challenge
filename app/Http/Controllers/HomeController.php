@@ -24,4 +24,12 @@ class HomeController extends Controller
         $people->about = $request->about;
         $people->save();
     }
+
+    public function getPeople(){
+        $people = RegisteredPeople::select(['id', 'name', 'email', 'about']);
+
+        return response()->json([
+            'data' => $people->get()
+        ]);
+    }
 }
