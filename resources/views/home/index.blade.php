@@ -19,6 +19,7 @@
             margin-bottom: 10px; /* Add some spacing between the elements */
             }
         </style>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	<body class="is-preload">
 
@@ -65,15 +66,24 @@
                             type: "POST",
                             data: formData,
                             success: function(response) {
-                                console.log(response);
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    text: 'Your form has been submitted successfully!'
+                                });
+                                $('#signup-form')[0].reset(); // Clear the form
                             },
                             error: function(xhr, status, error) {
                                 var errors = xhr.responseJSON.errors;
                                 var errorText = '';
                                 for (var error in errors) {
-                                errorText += errors[error][0] + '\n';
+                                    errorText += errors[error][0] + '\n';
                                 }
-                                alert(errorText);
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: errorText
+                                });
                             }
                         });
                     });
