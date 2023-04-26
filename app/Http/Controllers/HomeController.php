@@ -15,7 +15,7 @@ class HomeController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:60',
             'email' => 'required|unique:registered_people|email',
-            'about' => 'required|max:60'
+            'about' => 'required|max:200'
         ]);
 
         $people = new RegisteredPeople;
