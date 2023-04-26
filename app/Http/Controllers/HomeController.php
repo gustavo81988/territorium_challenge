@@ -13,9 +13,9 @@ class HomeController extends Controller
 
     public function saveForm(Request $request){
         $validated = $request->validate([
-            'name' => 'required|max:60',
+            'name' => 'required|max:60|min:6',
             'email' => 'required|unique:registered_people|email',
-            'about' => 'required|max:200'
+            'about' => 'required|max:200|min:10'
         ]);
 
         $people = new RegisteredPeople;
